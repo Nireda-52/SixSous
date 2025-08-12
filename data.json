@@ -1,0 +1,22 @@
+{
+  "enveloppes": [
+    {
+      "id": 1,
+      "nom": "Courses",
+      "montant_initial": 500.00,
+      "montant_actuel": 350.00,
+      "transactions": [
+        { "id": 1, "date": "2025-08-12 23:00", "montant": -50.00, "commentaire": "Supermarché" }
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Loisirs",
+      "montant_initial": 200.00,
+      "montant_actuel": 150.00,
+      "transactions": [
+        { "id": 1, "date": "2025-08-11 18:50", "montant": -50.00, "commentaire": "Cinéma et resto" }
+      ]
+    }
+  ]
+}

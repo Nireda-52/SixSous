@@ -1,0 +1,111 @@
+/* 🎨 Style global */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #eef3f8;
+  padding: 20px;
+  margin: 0;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #2b3a67;
+  margin-bottom: 30px;
+}
+
+/* 🗂 Carte enveloppe */
+.enveloppe {
+  background: white;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+.enveloppe:hover {
+  transform: translateY(-3px);
+}
+
+.enveloppe h2 {
+  margin-top: 0;
+  color: #2b3a67;
+}
+
+.montant {
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.montant.positif {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.montant.negatif {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* 📜 Tableau transactions */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.95em;
+}
+
+th {
+  background: #2b3a67;
+  color: white;
+  padding: 8px;
+  text-align: left;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+td .positif {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+td .negatif {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* 📝 Formulaire */
+form {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+input, button {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2b3a67;
+  box-shadow: 0 0 5px rgba(43, 58, 103, 0.3);
+}
+
+/* 🎯 Bouton */
+button {
+  background: #2b3a67;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #1e2a4d;
+}
