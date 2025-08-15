@@ -2,7 +2,7 @@
 L'idée derrière ce projet est de mettre en place la méthode des enveloppe dans une application simple et accessible.
 
 # Journal de bord 
-15/08/25 : Une bonne avancé sur le projet, on peut maintenant supprimer des lignes d'une enveloppe. Je suis capable de comprendre la majeure partie du code et de le modifier sans soucis preuve en est avec le développement de cette nouvelle feature.
+15/08/25 : Une bonne avancé sur le projet, on peut maintenant supprimer des lignes d'une enveloppe. Je suis capable de comprendre la majeure partie du code et de le modifier sans soucis _preuve en est avec le développement de cette nouvelle feature_.
 
 # Features possibles
 * Rajouter un champ date et heure, si l'utilisateur ne le renseigne pas, prendre la date du jour.
