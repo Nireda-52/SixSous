@@ -10,6 +10,8 @@ SixSous est une application permettant de mettre en pratique la "méthode des en
 * Rajouter un champ date et heure, si l'utilisateur ne le renseigne pas, prendre la date du jour.
 * Mettre une popup de confirmation avant de supprimer une transaction (popup qui propose par défaut l'action annulée).
 * Passer à un format BDD pour permettre d'avoir un fonctionnement Front-End / Back-End.
+* Changer le fonctionnement au niveau des transaction. Avoir des "périodes" sur laquelle on enregistre des transaction. La période correspond à un mois de gestion. Dans la pratique un mois peut déborder de quelques jours (Le temps que la paie arrive ou que l'on prenne le temps de faire la passation), c'est pour ça qu'on gère les transaction sur des périodes.
+* Créer une barre d'avancement avec un pourcentage qui montre à quel point tu as utilisé une enveloppe. On pourrait aussi définir un indicateur pour savoir si tu as dépensé plus que ce qu'il ne le fallait à la jourénée ou à la semaine. La barre affiche le pourcentage et la couleur indique si tu es vert(large en budg), jaune(dans les clous mais attention), rouge(y'a du dépassement, à surveiller).
 
 # Rappel des bonnes règles de commit
 |Commit Name|Description|

@@ -13,6 +13,12 @@ h1 {
   margin-bottom: 30px;
 }
 
+.JourDePaie {
+  display: block;       
+  margin: 0 auto 20px;   
+  padding: 20px 40px;    
+}
+
 /* 🗂 Carte enveloppe */
 .enveloppe {
   background: white;

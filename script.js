@@ -61,6 +61,9 @@ function afficherEnveloppes() {
   });
 }
 
+// TODO : Cette fonction n'est pas pratique parce qu'elle gère directement les valeurs du front. 
+// Elle ne permet pas d'être réutilisé avec n'importe quel valeurs.
+// A modifier.
 function ajouterTransaction(e, enveloppeId) {
   e.preventDefault();
   const form = e.target;
@@ -104,4 +107,37 @@ function supprimerTransaction(e, enveloppeId, transactionId) {
   console.log("Vous avez supprimé cette ligne : [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "] de l'enveloppe " + enveloppe.nom);
 
   afficherEnveloppes();
+}
+
+// TODO : rajouter des contrôle sur le type de paramètres passés en entrée.
+// J'aimerais que le montant soit forcé en float mais mon IDE me dit que ce n'est possible qu'en TS. 
+// Il faudra passé sur ce langage dans ce cas.
+function ajouterTransactionWithData(enveloppe, montant, commentaire){
+  const date = new Date().toISOString().split('T')[0];
+  const newId = enveloppe.transactions.length + 1;
+  enveloppe.transactions.push({
+    id: newId,
+    date,
+    montant,
+    commentaire
+  });
+  enveloppe.montant_actuel += montant;
+}
+
+function activerJourDePaie() {
+  if (confirm("Vous êtes sur le point de remplir toutes vos enveloppes. Confirmer ?")) {
+    console.log("C'est le jour de paie !")
+    const app = document.getElementById("app");
+
+    //Pour chaque enveloppe,
+    data.enveloppes.forEach(env => {
+      // calculer le montant manquant pour compléter l'enveloppe,
+      let complement = env.montant_initial - env.montant_actuel;
+      console.log(complement)
+      // et l'ajouter à l'enveloppe.
+      ajouterTransactionWithData(env, complement, "Jour de paie !")
+    });
+
+    afficherEnveloppes();
+  }  
 }
