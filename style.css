@@ -67,6 +67,12 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
+td button {
+  margin: 0;
+  display: inline-block; /* évite qu’il déborde */
+  box-sizing: border-box;
+}
+
 td .positif {
   background-color: #d4edda;
   color: #155724;
@@ -108,4 +114,18 @@ button {
 }
 button:hover {
   background: #1e2a4d;
+}
+
+button.erase {
+  background: white;
+  color: red;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  /*Pour gérer la croix. Un peu dégueu pour l'instant, à remplacer par une image à terme.*/
+  padding: 6px 8px 4px 8px;
+}
+button.erase:hover {
+  background: red;
+  color: white;
 }

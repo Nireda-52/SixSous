@@ -26,6 +26,7 @@ function afficherEnveloppes() {
             <th>Date</th>
             <th>Montant</th>
             <th>Commentaire</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,9 @@ function afficherEnveloppes() {
               <td>${t.date}</td>
               <td><span class="montant ${t.montant >= 0 ? 'positif' : 'negatif'}">${t.montant} €</span></td>
               <td>${t.commentaire}</td>
+              <td>
+                <button class="erase" type="button" onclick="supprimerTransaction(event, ${env.id}, ${t.id})">X</button>
+              </td>
             </tr>
           `).join("")}
         </tbody>
@@ -41,9 +45,8 @@ function afficherEnveloppes() {
     `;
 
     div.innerHTML = `
-      <h2>${env.nom}</h2>
-      <p>Budget initial : <span class="montant positif">${env.montant_initial.toFixed(2)} €</span></p>
-      <p>Montant actuel : <span class="montant ${classeMontant}">${env.montant_actuel.toFixed(2)} €</span></p>
+      <h2>${env.nom}</h2> 
+      <p>Montant actuel : <span class="montant ${classeMontant}">${env.montant_actuel.toFixed(2)} / ${env.montant_initial.toFixed(2)} €</span></p>
 
       <h3>Transactions :</h3>
       ${transactionsHTML}
@@ -79,6 +82,26 @@ function ajouterTransaction(e, enveloppeId) {
   });
 
   enveloppe.montant_actuel += montant;
+
+  afficherEnveloppes();
+}
+
+function supprimerTransaction(e, enveloppeId, transactionId) {
+  //Je ne sais pas encore à quoi ça sert, à creuser.
+  e.preventDefault();
+  const form = e.target;
+
+  const enveloppe = data.enveloppes.find(env => env.id === enveloppeId);
+  const transaction = enveloppe.transactions.find(trans => trans.id === transactionId);
+
+  // Répercuter le montant sur l'enveloppe.
+  enveloppe.montant_actuel -= transaction.montant; 
+
+  // Supprimer la transaction dans l'historique
+  let index = enveloppe.transactions.findIndex(t => t.id === transactionId);
+  enveloppe.transactions.splice(index, 1);
+
+  console.log("Vous avez supprimé cette ligne : [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "] de l'enveloppe " + enveloppe.nom);
 
   afficherEnveloppes();
 }

@@ -4,7 +4,7 @@
       "id": 1,
       "nom": "Courses",
       "montant_initial": 500.00,
-      "montant_actuel": 350.00,
+      "montant_actuel": 450.00,
       "transactions": [
         { "id": 1, "date": "2025-08-12 23:00", "montant": -50.00, "commentaire": "Supermarché" }
       ]
