@@ -1,4 +1,7 @@
 let data;
+const PARAMS = {
+  confirmationNecessairePourSupprimerUneLigne: false
+};
 
 // Charger le JSON
 fetch('data.json')
@@ -36,7 +39,7 @@ function afficherEnveloppes() {
               <td><span class="montant ${t.montant >= 0 ? 'positif' : 'negatif'}">${t.montant} €</span></td>
               <td>${t.commentaire}</td>
               <td>
-                <button class="erase" type="button" onclick="supprimerTransaction(event, ${env.id}, ${t.id})">X</button>
+                <button class="erase" type="button" onclick="supprimerTransaction(${env.id}, ${t.id})">X</button>
               </td>
             </tr>
           `).join("")}
@@ -89,24 +92,37 @@ function ajouterTransaction(e, enveloppeId) {
   afficherEnveloppes();
 }
 
-function supprimerTransaction(e, enveloppeId, transactionId) {
-  //Je ne sais pas encore à quoi ça sert, à creuser.
-  e.preventDefault();
-  const form = e.target;
-
+function supprimerTransaction(enveloppeId, transactionId) {
   const enveloppe = data.enveloppes.find(env => env.id === enveloppeId);
   const transaction = enveloppe.transactions.find(trans => trans.id === transactionId);
 
-  // Répercuter le montant sur l'enveloppe.
-  enveloppe.montant_actuel -= transaction.montant; 
+  // TODO cette façon de faire n'est pas très propre car on utilise deux fois le même bout de code. Il faudrait faire une sous-fonction pour éviter d'oublier de le modifier quelque part. 
+  if(PARAMS.confirmationNecessairePourSupprimerUneLigne) {
+    if (confirm("Vous êtes sur le point de supprimer la transaction [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "]. Confirmer ?")) {
+      // Répercuter le montant sur l'enveloppe.
+      enveloppe.montant_actuel -= transaction.montant;
 
-  // Supprimer la transaction dans l'historique
-  let index = enveloppe.transactions.findIndex(t => t.id === transactionId);
-  enveloppe.transactions.splice(index, 1);
+      // Supprimer la transaction dans l'historique
+      let index = enveloppe.transactions.findIndex(t => t.id === transactionId);
+      enveloppe.transactions.splice(index, 1);
 
-  console.log("Vous avez supprimé cette ligne : [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "] de l'enveloppe " + enveloppe.nom);
+      console.log("Vous avez supprimé cette ligne : [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "] de l'enveloppe " + enveloppe.nom);
 
-  afficherEnveloppes();
+      afficherEnveloppes();
+    }
+  } else {
+    // Répercuter le montant sur l'enveloppe.
+      enveloppe.montant_actuel -= transaction.montant;
+
+      // Supprimer la transaction dans l'historique
+      let index = enveloppe.transactions.findIndex(t => t.id === transactionId);
+      enveloppe.transactions.splice(index, 1);
+
+      console.log("Vous avez supprimé cette ligne : [" + transaction.date + " " + transaction.montant + " € " + transaction.commentaire + "] de l'enveloppe " + enveloppe.nom);
+
+      afficherEnveloppes();
+  }
+  
 }
 
 // TODO : rajouter des contrôle sur le type de paramètres passés en entrée.
@@ -139,5 +155,5 @@ function activerJourDePaie() {
     });
 
     afficherEnveloppes();
-  }  
+  }
 }
