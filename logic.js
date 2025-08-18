@@ -1,0 +1,82 @@
+/*** LOGIC.JS ***
+ * Ce fichier contient toute la logique métier :
+ * ajout/suppression de transactions, calcul des montants, génération d'IDs, etc.
+ * Aucune manipulation du DOM ici.
+ **/
+
+let transactionIDCounter = 1; // compteur pour générer des IDs uniques pour les transactions
+
+/**
+ * Ajoute une transaction à une enveloppe.
+ * Si la date n'est pas fournie, prend la date du jour.
+ *
+ * @param {Object} enveloppe - L'enveloppe cible à modifier.
+ * @param {number} montant - Montant de la transaction (positif ou négatif)
+ * @param {string} commentaire - Commentaire de la transaction
+ * @param {string} [date] - Date au format YYYY-MM-DD (optionnelle)
+ */
+export function ajouterTransaction(enveloppe, montant, commentaire) {
+  //TODO: gérer le côté optionnel de la variable date (qui est actuellement absente)
+  const date = transactionData.date || new Date().toISOString().split('T')[0];
+
+  const nouvelleTransaction = {
+    id: transactionIDCounter++, // génère un ID unique
+    montant,
+    commentaire,
+    date
+  };
+
+  enveloppe.transactions.push(nouvelleTransaction);
+
+  // Met à jour le montant actuel de l'enveloppe
+  enveloppe.montant_actuel += montant;
+}
+
+/**
+ * Supprime une transaction d'une enveloppe.
+ *
+ * @param {Object} enveloppe - L'enveloppe cible
+ * @param {number} transactionID - ID de la transaction à supprimer
+ * @returns {boolean} - True si suppression réussie, false sinon
+ */
+export function supprimerTransaction(enveloppe, transactionID) {
+  const index = enveloppe.transactions.findIndex(t => t.id === transactionID);
+  if (index === -1) return false;
+
+  const montant = enveloppe.transactions[index].montant;
+  enveloppe.transactions.splice(index, 1);
+
+  // Met à jour le montant actuel de l'enveloppe
+  enveloppe.montant_actuel -= montant;
+
+  return true;
+}
+
+/**
+ * Rempli chaque enveloppes pour que son montant actuel soit égal à son budget initial.
+ * @param {Object} enveloppes - Liste des enveloppes à remplir.
+ */
+export function remplirEnveloppes(enveloppes) {
+    //Pour chaque enveloppes,
+    enveloppes.forEach(env => {
+      // calculer le montant manquant pour compléter l'enveloppe,
+      let complement = env.montant_initial - env.montant_actuel;
+      // et l'ajouter à l'enveloppe.
+      ajouterTransaction(env, complement, "Jour de paie !")
+    });
+}
+
+
+
+
+/**
+ * Calcule le montant actuel d'une enveloppe à partir de son historique de transactions
+ *
+ * @param {Object} enveloppe - L'enveloppe à calculer
+ */
+export function recalculerMontantActuel(enveloppe) {
+  enveloppe.montant_actuel = enveloppe.transactions.reduce(
+    (total, t) => total + t.montant,
+    0
+  );
+}
