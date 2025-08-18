@@ -8,7 +8,8 @@
 ## Liste prioritaire
 
 1. Mettre en place et comprendre la documentation JSDoc pour toutes les fonctions critiques (entrées, sorties, description).
-2. Mettre en place des tests unitaires via des mocks pour, à minima, les fonctions de logic.js (à faire après la documentation).
+2. Mettre en place des fonctions utilitaires pour les sanity checks et validations (montant, commentaire, date, transaction complète).
+3. Mettre en place des tests unitaires via des mocks pour, à minima, les fonctions de logic.js (à faire après la documentation et les sanity checks).
 
 ## Liste d'idées et améliorations potentielles
 
