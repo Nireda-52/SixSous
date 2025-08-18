@@ -55,28 +55,20 @@ export function supprimerTransaction(enveloppe, transactionID) {
 /**
  * Rempli chaque enveloppes pour que son montant actuel soit égal à son budget initial.
  * @param {Object} enveloppes - Liste des enveloppes à remplir.
+ * @param {string} commentaire - Commentaire utiliser pour le remplissage. (optionelle)
  */
-export function remplirEnveloppes(enveloppes) {
+export function remplirEnveloppes(enveloppes, commentaire) {
+    // Par défaut la valeur utilisée pour le commentaire est,
+    if (commentaire === null){
+      // "Jour de paie !"
+      commentaire = "Jour de paie !"
+    }
+
     //Pour chaque enveloppes,
     enveloppes.forEach(env => {
       // calculer le montant manquant pour compléter l'enveloppe,
       let complement = env.montant_initial - env.montant_actuel;
       // et l'ajouter à l'enveloppe.
-      ajouterTransaction(env, complement, "Jour de paie !")
+      ajouterTransaction(env, complement, commentaire)
     });
-}
-
-
-
-
-/**
- * Calcule le montant actuel d'une enveloppe à partir de son historique de transactions
- *
- * @param {Object} enveloppe - L'enveloppe à calculer
- */
-export function recalculerMontantActuel(enveloppe) {
-  enveloppe.montant_actuel = enveloppe.transactions.reduce(
-    (total, t) => total + t.montant,
-    0
-  );
 }
