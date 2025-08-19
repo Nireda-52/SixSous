@@ -59,7 +59,7 @@ export function supprimerTransaction(enveloppe, transactionID) {
  */
 export function remplirEnveloppes(enveloppes, commentaire) {
     // Par défaut la valeur utilisée pour le commentaire est,
-    if (commentaire === null){
+    if (!commentaire){
       // "Jour de paie !"
       commentaire = "Jour de paie !"
     }

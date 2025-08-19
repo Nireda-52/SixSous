@@ -116,3 +116,13 @@ export function brancherEvenements(data, refreshFunction) {
     });
   });
 }
+
+export function brancherJourDePaie(data, refreshScreen) {
+  const btn = document.querySelector("button.JourDePaie");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    Logic.remplirEnveloppes(data.enveloppes)
+    refreshScreen();
+  });
+}
