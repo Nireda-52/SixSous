@@ -1,7 +1,11 @@
 # Principe
 SixSous est une application permettant de mettre en pratique la "méthode des enveloppes", méthode de gestion de budget, appliqué au dépenses numériques.
 
+# En cours
+Finir la refacto: avoir un fonctionnement métier au moins fonctionnel à la branche principal avec cette architecture de code.
+
 # Journal de bord 
+> 18/08/25 : Refacto complète du code en vue de préparer la migration Back/front et l'arrivée de la BDD. Pour aider dans cette étape j'ai rajouté le agentIA.md qui sert juste de base pour ne pas avoir à rappeler à mon "prof" le contexte de développement ainsi que les pistes d'amélioration de bonnes pratiques sur lesquels on pourrait avancer. Malgré tout, j'arrive à reste maître du code et l'IA ne sert que de support pour découvrir de nouveaux concept ou l'approfondir.
 
 > 15/08/25 : Une bonne avancé sur le projet, on peut maintenant supprimer des lignes d'une enveloppe. Je suis capable de comprendre la majeure partie du code et de le modifier sans soucis _preuve en est avec le développement de cette nouvelle feature_. Pour l'instant je pense que je ne vais garder l'appplication qu'en HTML/CSS/JS. J'envisagerais de passer sur un framework seulement si c'est nécessaire ou que l'appli devient trop lourde. Se remémorer les bases ne fera jamais de mal, et c'est une façon d'apprendre comment marchent certaines fonctionnalités que l'on utilise tous les jours dans des librairies Front.
 *Prochain objectif*, connecter la BDD pour avoir des données permanente. 
