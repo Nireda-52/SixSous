@@ -11,7 +11,11 @@
 import * as Logic from "./logic.js";
 
 const PARAMS = {
-  confirmationNecessairePourSupprimerUneLigne: false
+  confirmationNecessairePourSupprimerUneLigne: true,
+  confirmationNecessairePourLeJourDePaie: true,
+  commentaireObligatoirePourAjouterUneTransaction: false,
+  proposeDeChoisirLeMontantDuneNouvelleEnveloppe: false,
+  proposeDeChoisirLeNomDuneNouvelleEnveloppe: false
 };
 
 
@@ -75,7 +79,7 @@ export function afficherEnveloppes(data) {
 
       <form data-env="${env.id}">
         <input type="number" step="0.01" name="montant" placeholder="Montant" required>
-        <input type="text" name="commentaire" placeholder="Commentaire" required>
+        <input type="text" name="commentaire" placeholder="Commentaire" ${PARAMS.commentaireObligatoirePourAjouterUneTransaction ? "required" : ""}>
         <button type="submit">Ajouter</button>
       </form>
     `;
@@ -110,6 +114,11 @@ export function brancherEvenements(data, refreshFunction) {
   // Supprimer une transaction
   app.querySelectorAll("button.erase").forEach(btn => {
     btn.addEventListener("click", () => {
+      if(PARAMS.confirmationNecessairePourSupprimerUneLigne){
+        const confirmer = window.confirm("Voulez-vous vraiment supprimer cette transaction ?");
+        if (!confirmer) return; // arrêt si annulation
+      }
+
       const env = data.enveloppes.find(e => e.id === parseInt(btn.dataset.env));
       Logic.supprimerTransaction(env, parseInt(btn.dataset.id));
       refreshFunction(); // callback pour re-render
@@ -122,7 +131,37 @@ export function brancherJourDePaie(data, refreshScreen) {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
+    if(PARAMS.confirmationNecessairePourLeJourDePaie){
+      const confirmer = window.confirm("Voulez-vous vraiment remplir toutes les enveloppes ?");
+      if (!confirmer) return; // arrêt si annulation
+    }
+    
     Logic.remplirEnveloppes(data.enveloppes)
     refreshScreen();
   });
 }
+
+
+//TODO : mettre une valeur par défaut pour budget.
+export function ajouterEnveloppe(data, refreshScreen) {
+  const btn = document.querySelector("div.add-enveloppe");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    let nom = "Nouvelle enveloppe";
+    let budget = "150";
+    if(PARAMS.proposeDeChoisirLeNomDuneNouvelleEnveloppe){
+      nom = window.prompt("Quel nom souhaitez vous donner à votre enveloppe ?");
+      if (!nom) return; // arrêt si annulation ou vide
+    }
+
+    if(PARAMS.proposeDeChoisirLeMontantDuneNouvelleEnveloppe){
+      let budget = window.prompt("Quel budget souhaitez vous allouer à cette enveloppe ? (100€ par défaut)");
+      if (!budget) return; // arrêt si annulation ou vide
+    }
+
+    Logic.creerEnveloppe(data.enveloppes, nom, Number(budget));
+    refreshScreen();
+  });
+}
+

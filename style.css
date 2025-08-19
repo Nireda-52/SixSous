@@ -53,6 +53,48 @@ h1 {
   color: #721c24;
 }
 
+/* Carte pour créer une nouvelle enveloppe */
+.add-enveloppe {
+  background: #f5f6f8;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;      /* centre verticalement */
+  justify-content: center;  /* centre horizontalement */
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  height: 150px; /* même hauteur qu'une enveloppe classique */
+  margin-bottom: 25px;
+  border-radius: 12px;
+}
+
+.add-enveloppe:hover {
+  background: #e1e4ea;
+  border-color: #aaa;
+}
+
+/* Carte pour créer une nouvelle enveloppe */
+.add-enveloppe {
+  background: #f5f6f8;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;      /* centre verticalement */
+  justify-content: center;  /* centre horizontalement */
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  height: 150px; /* même hauteur qu'une enveloppe classique */
+  margin-bottom: 25px;
+  border-radius: 12px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #888; /* gris */
+}
+
+.add-enveloppe:hover {
+  background: #e1e4ea;
+  border-color: #aaa;
+  color: #555;
+}
+
 /* 📜 Tableau transactions */
 table {
   width: 100%;

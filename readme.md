@@ -2,7 +2,7 @@
 SixSous est une application permettant de mettre en pratique la "méthode des enveloppes", méthode de gestion de budget, appliqué au dépenses numériques.
 
 # En cours
-Finir la refacto: avoir un fonctionnement métier au moins fonctionnel à la branche principal avec cette architecture de code.
+Rajouter une enveloppe
 
 # Journal de bord 
 > 18/08/25 : Refacto complète du code en vue de préparer la migration Back/front et l'arrivée de la BDD. Pour aider dans cette étape j'ai rajouté le agentIA.md qui sert juste de base pour ne pas avoir à rappeler à mon "prof" le contexte de développement ainsi que les pistes d'amélioration de bonnes pratiques sur lesquels on pourrait avancer. Malgré tout, j'arrive à reste maître du code et l'IA ne sert que de support pour découvrir de nouveaux concept ou l'approfondir.
@@ -11,8 +11,7 @@ Finir la refacto: avoir un fonctionnement métier au moins fonctionnel à la bra
 *Prochain objectif*, connecter la BDD pour avoir des données permanente. 
 
 # Features possibles
-* Rajouter un champ date et heure, si l'utilisateur ne le renseigne pas, prendre la date du jour.
-* Mettre une popup de confirmation avant de supprimer une transaction (popup qui propose par défaut l'action annulée).
+* Pourvoir rajouter une enveloppe
 * Passer à un format BDD pour permettre d'avoir un fonctionnement Front-End / Back-End.
 * Changer le fonctionnement au niveau des transaction. Avoir des "périodes" sur laquelle on enregistre des transaction. La période correspond à un mois de gestion. Dans la pratique un mois peut déborder de quelques jours (Le temps que la paie arrive ou que l'on prenne le temps de faire la passation), c'est pour ça qu'on gère les transaction sur des périodes.
 * Créer une barre d'avancement avec un pourcentage qui montre à quel point tu as utilisé une enveloppe. On pourrait aussi définir un indicateur pour savoir si tu as dépensé plus que ce qu'il ne le fallait à la jourénée ou à la semaine. La barre affiche le pourcentage et la couleur indique si tu es vert(large en budg), jaune(dans les clous mais attention), rouge(y'a du dépassement, à surveiller).

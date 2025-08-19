@@ -5,6 +5,7 @@
  **/
 
 let transactionIDCounter = 1; // compteur pour générer des IDs uniques pour les transactions
+let enveloppeIDCounter = 2; 
 
 /**
  * Ajoute une transaction à une enveloppe.
@@ -71,4 +72,16 @@ export function remplirEnveloppes(enveloppes, commentaire) {
       // et l'ajouter à l'enveloppe.
       ajouterTransaction(env, complement, commentaire)
     });
+}
+
+export function creerEnveloppe(enveloppes, nom, budget) {
+  const nouvelleEnveloppe = {
+    id: ++enveloppeIDCounter,
+    nom: nom,
+    montant_initial: budget,
+    montant_actuel: budget,
+    transactions: []
+  };
+
+  enveloppes.push(nouvelleEnveloppe);
 }

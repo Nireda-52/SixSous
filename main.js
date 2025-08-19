@@ -9,6 +9,7 @@ fetch("data.json")
     renderApp();
 
     UI.brancherJourDePaie(data, renderApp);
+    UI.ajouterEnveloppe(data, renderApp);
   })
   .catch(err => console.error("Erreur de chargement du JSON :", err));
   
