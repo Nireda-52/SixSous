@@ -11,6 +11,7 @@ fetch("data.json")
   .catch(err => console.error("Erreur de chargement du JSON :", err));
 
 function renderApp() {
+  console.log("renderApp() appelée", data);
   UI.afficherEnveloppes(data);
   UI.brancherEvenements(data, renderApp);
 }

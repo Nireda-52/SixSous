@@ -15,15 +15,15 @@ let transactionIDCounter = 1; // compteur pour générer des IDs uniques pour le
  * @param {string} commentaire - Commentaire de la transaction
  * @param {string} [date] - Date au format YYYY-MM-DD (optionnelle)
  */
-export function ajouterTransaction(enveloppe, montant, commentaire) {
+export function ajouterTransaction(enveloppe, montant, commentaire, givenDate) {
   //TODO: gérer le côté optionnel de la variable date (qui est actuellement absente)
-  const date = transactionData.date || new Date().toISOString().split('T')[0];
+  const date = givenDate || new Date().toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', year:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }).replace(',', '');
 
   const nouvelleTransaction = {
-    id: transactionIDCounter++, // génère un ID unique
+    id: ++transactionIDCounter, // génère un ID unique
+    date,
     montant,
-    commentaire,
-    date
+    commentaire
   };
 
   enveloppe.transactions.push(nouvelleTransaction);

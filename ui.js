@@ -87,9 +87,9 @@ export function afficherEnveloppes(data) {
 /**
  * TODO : Améliorer les commentaire et creuser le principe de callback via refreshFn
  * @param {Object} data - L'objet contenant les enveloppes à afficher
- * @param {*} refreshFn - Element pour lancer à nouveau le render.
+ * @param {*} refreshFunction - Callback pour relancer la fonction de rendu mère.
  */
-export function brancherEvenements(data, refreshFn) {
+export function brancherEvenements(data, refreshFunction) {
   const app = document.getElementById("app");
 
   // Ajouter une transaction
@@ -103,7 +103,7 @@ export function brancherEvenements(data, refreshFn) {
       const commentaire = form.commentaire.value;
 
       Logic.ajouterTransaction(env, montant, commentaire);
-      refreshFn(); // callback pour re-render
+      refreshFunction(); // callback pour re-render
     });
   });
 
@@ -112,7 +112,7 @@ export function brancherEvenements(data, refreshFn) {
     btn.addEventListener("click", () => {
       const env = data.enveloppes.find(e => e.id === parseInt(btn.dataset.env));
       Logic.supprimerTransaction(env, parseInt(btn.dataset.id));
-      refreshFn(); // callback pour re-render
+      refreshFunction(); // callback pour re-render
     });
   });
 }
