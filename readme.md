@@ -4,13 +4,21 @@ SixSous est une application permettant de mettre en pratique la "méthode des en
 # En cours
 Rajouter une enveloppe
 
-# Journal de bord 
-> 18/08/25 : Refacto complète du code en vue de préparer la migration Back/front et l'arrivée de la BDD. Pour aider dans cette étape j'ai rajouté le agentIA.md qui sert juste de base pour ne pas avoir à rappeler à mon "prof" le contexte de développement ainsi que les pistes d'amélioration de bonnes pratiques sur lesquels on pourrait avancer. Malgré tout, j'arrive à reste maître du code et l'IA ne sert que de support pour découvrir de nouveaux concept ou l'approfondir.
+# Dépendances
+Voici les dépendances qui peuvent être nécessaire pour installer le projet :
+* Node.Js
+    * Utilisé pour faire fonctionner la partie serveur
+    * Installer Node.Js sur sa machine (via leur site internet)
+    * Installer better-sqlite3 (pour pouvoir créer la bdd)
+    * Installer Express (pour pouvoir lancer le serveur)
+    * Installer CORS et l'intégrer dans le fichier server.js (utile pour éviter les erreurs de type adresse non autorisée)
+    * Lancer le serveur avec  > node .\server\server.js
+* SqlLite Extension (VsCode)
+    * Je recommande de l'installer pour pouvoir intéragir directement avec la base de donnée sans avoir à passer par l'application (très utile pour le débug)
 
-> 15/08/25 : Une bonne avancé sur le projet, on peut maintenant supprimer des lignes d'une enveloppe. Je suis capable de comprendre la majeure partie du code et de le modifier sans soucis _preuve en est avec le développement de cette nouvelle feature_. Pour l'instant je pense que je ne vais garder l'appplication qu'en HTML/CSS/JS. J'envisagerais de passer sur un framework seulement si c'est nécessaire ou que l'appli devient trop lourde. Se remémorer les bases ne fera jamais de mal, et c'est une façon d'apprendre comment marchent certaines fonctionnalités que l'on utilise tous les jours dans des librairies Front.
-*Prochain objectif*, connecter la BDD pour avoir des données permanente. 
 
 # Features possibles
+* Avoir un form tout en haut pour rajouter une dépense dans n'importe quelle enveloppe (via dropdown)
 * Pourvoir rajouter une enveloppe
 * Passer à un format BDD pour permettre d'avoir un fonctionnement Front-End / Back-End.
 * Changer le fonctionnement au niveau des transaction. Avoir des "périodes" sur laquelle on enregistre des transaction. La période correspond à un mois de gestion. Dans la pratique un mois peut déborder de quelques jours (Le temps que la paie arrive ou que l'on prenne le temps de faire la passation), c'est pour ça qu'on gère les transaction sur des périodes.
