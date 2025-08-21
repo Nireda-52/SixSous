@@ -2,7 +2,7 @@
 SixSous est une application permettant de mettre en pratique la "méthode des enveloppes", méthode de gestion de budget, appliqué au dépenses numériques.
 
 # En cours
-Rajouter une enveloppe
+Mettre en place la base de données dans Supabase
 
 # Dépendances
 Voici les dépendances qui peuvent être nécessaire pour installer le projet :
